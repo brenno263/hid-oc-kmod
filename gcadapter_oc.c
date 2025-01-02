@@ -3,8 +3,11 @@
 #include <linux/kernel.h>
 #include <linux/usb.h>
 
-#define GCADAPTER_VID 0x057e
-#define GCADAPTER_PID 0x0337
+// #define GCADAPTER_VID 0x057e
+// #define GCADAPTER_PID 0x0337
+#define GCADAPTER_VID 0x045e
+#define GCADAPTER_PID 0x028e
+
 
 MODULE_LICENSE("GPL");
 MODULE_AUTHOR("Hannes Mann");
@@ -14,7 +17,7 @@ MODULE_VERSION("1.4");
 static struct usb_device* adapter_device = NULL;
 
 static unsigned short restore_interval = 8;
-static unsigned short configured_interval = 1;
+static unsigned short configured_interval = 2;
 
 /* Patches all applicable endpoints. Returns the bInterval value used before patching. */
 static unsigned short patch_endpoints(unsigned short interval) {
@@ -28,7 +31,7 @@ static unsigned short patch_endpoints(unsigned short interval) {
 				struct usb_host_interface* altsettingptr = &interface->altsetting[altsetting];
 
 				for(__u8 endpoint = 0; endpoint < altsettingptr->desc.bNumEndpoints; endpoint++) {
-					if(altsettingptr->endpoint[endpoint].desc.bEndpointAddress == 0x81 || altsettingptr->endpoint[endpoint].desc.bEndpointAddress == 0x02) {
+					if(altsettingptr->endpoint[endpoint].desc.bEndpointAddress == 0x81 || altsettingptr->endpoint[endpoint].desc.bEndpointAddress == 0x81) {
 						old_interval = altsettingptr->endpoint[endpoint].desc.bInterval;
 						altsettingptr->endpoint[endpoint].desc.bInterval = interval;
 

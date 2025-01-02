@@ -1,6 +1,7 @@
-# gcadapter_oc_kmod
+# usb_oc_kmod
 
-Kernel module for overclocking the Nintendo Wii U/Mayflash GameCube adapter.
+Kernel module for over or under clocking usb devices, mainly mouses and gamepads.
+All text below is from the forked repo and may not still be accurate.
 
 The default overclock is from 125 Hz to 1000 Hz. Official adapters should be able to handle this but if you experience stutter or dropped inputs you can try lowering the rate to 500 Hz.
 
